@@ -1,0 +1,30 @@
+# Criptografia e Embaralhamento
+# pypqc base criptográfica (Kyber1024, Falcon1024, Dilithium5, etc.)
+pypqc>=0.0.6.2
+
+# Embaralhamento
+pyshark>=0.6
+
+# Rede mesh + tools wireguard + configs para servidor/cliente
+wg-meshconf>=2.5.1         # Geração de configs para redes mesh WireGuard
+wireguard>=1.0.2           # Automação de configs para servidor/cliente
+wireguard4netns>=0.1.6     # VPN para namespaces sem root via wireguard-go
+
+# Testes automatizados
+pytest>=8.0.0
+
+# Análise de tráfego e entropia
+scapy>=2.5.0
+
+# Bindings nativos para bibliotecas C
+cffi>=2.0.0
+pycparser>=2.23
+
+# Logging avançado com rotação, JSON, integração externa
+logging4>=0.0.2
+
+# Empacotamento e build
+build
+twine
+setuptools
+wheel

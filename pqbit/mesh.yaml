@@ -1,0 +1,16 @@
+# pqbit/pqbit/mesh.yaml
+
+peers:
+  - name: nodeA
+    endpoint: 10.0.0.1:51820
+    allowed_ips: 10.0.0.1/32
+    public_key: pubA_base64...
+    recent_data: abc123xyz
+    auth: true
+
+  - name: nodeB
+    endpoint: 10.0.0.2:51820
+    allowed_ips: 10.0.0.2/32
+    public_key: pubB_base64...
+    recent_data: zzz111aaa
+    auth: false

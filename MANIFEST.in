@@ -1,0 +1,38 @@
+# 🌟 pqbit — Post-Quantum Cryptography for Everyone
+# This manifesto honors the Python community and Kito Hamachi's vision.
+
+# 📘 Documentation and License
+include README.md
+include LICENSE
+include requirements.txt
+
+# 🧠 Configuration Files
+include pyproject.toml
+include setup.py
+include pqbit/mesh.yaml
+
+# 📦 Package Source Code
+recursive-include pqbit *.py
+
+# 🧪 Tests and Validation
+recursive-include tests *.py
+
+# 📊 Logs and Benchmarks (optional for debugging and transparency)
+recursive-include logs *.json
+recursive-include logs *.log
+
+# 🔒 Auxiliary Files (e.g., plaintext for cryptography tests)
+include pqbit/plaintext.txt
+
+# 🧼 Ignore Temporary and Build Files
+global-exclude *.pyc
+global-exclude __pycache__/
+global-exclude *.pyo
+global-exclude *.orig
+global-exclude *.swp
+global-exclude *.bak
+global-exclude .DS_Store
+
+# 🙏 Gratitude
+# This project is dedicated to the Python community and those who believe in digital freedom.
+
