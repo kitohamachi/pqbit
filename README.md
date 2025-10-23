@@ -1,6 +1,6 @@
 ## 🧠 pqbit
 
-![Banner pqbit v1.2.0](assets/banner-v1.2.0.png)
+![Banner pqbit v1.2.0](assets/banner.png)
 ![PyPI](https://img.shields.io/pypi/v/pqbit)
 ![License](https://img.shields.io/github/license/kitohamachi/pqbit)
 ![Build](https://img.shields.io/github/actions/workflow/status/kitohamachi/pqbit/python-app.yml)
@@ -251,3 +251,7 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 Inspired by [PQClean](https://github.com/PQClean/PQClean) and dedicated to the open-source security community.
 
 This project is dedicated to the Python community and to those who believe in digital freedom.
+
+<p align="center">
+  <img src="assets/banner.png" alt="pqbit — Post-Quantum Wallet" width="600"/>
+</p>
