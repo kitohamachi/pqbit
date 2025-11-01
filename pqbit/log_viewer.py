@@ -23,7 +23,7 @@ logging.basicConfig(
 logger = logging.getLogger("pqbit.log_viewer")
 
 # -------------------------------
-# 📡 Painel Mesh Interativo
+# 📡 Interactive Mesh Dashboard
 # -------------------------------
 
 def show_dashboard(peers: List[Dict[str, Any]]) -> None:
@@ -33,14 +33,14 @@ def show_dashboard(peers: List[Dict[str, Any]]) -> None:
         peer = next(p for p in peers if p["name"] == name)
         print(f"Peer: {peer['name']}")
         print(f"  Endpoint: {peer['endpoint']}")
-        print(f"  Entropia: {peer.get('entropy', 0.0):.2f}")
-        print(f"  Latência: {peer.get('latency', 0.0):.2f}s")
-        print(f"  Autenticado: {'✔️' if peer.get('auth', False) else '❌'}")
+        print(f"  Entropy: {peer.get('entropy', 0.0):.2f}")
+        print(f"  Latency: {peer.get('latency', 0.0):.2f}s")
+        print(f"  Authenticated: {'✔️' if peer.get('auth', False) else '❌'}")
         print(f"  Score: {score:.2f}")
         print()
 
 # -------------------------------
-# 📜 Visualização de Logs
+# 📜 Log Visualization
 # -------------------------------
 
 def tail_log(lines: int = 20) -> None:
@@ -62,14 +62,14 @@ def tail_log(lines: int = 20) -> None:
             print(line.strip())
 
 # -------------------------------
-# 🧹 Limpeza de Tela
+# 🧹 Screen Clearing
 # -------------------------------
 
 def clear_screen() -> None:
     os.system("cls" if platform.system() == "Windows" else "clear")
 
 # -------------------------------
-# 🛡️ Auditoria Guardian
+# 🛡️ Guardian Audit
 # -------------------------------
 
 def run_guardian() -> None:
@@ -78,7 +78,7 @@ def run_guardian() -> None:
     input("\n🛡️ Press Enter to return to viewing logs...")
 
 # -------------------------------
-# 🚀 Benchmark de Túnel
+# 🚀 Tunnel Benchmark
 # -------------------------------
 
 def run_benchmark() -> None:
@@ -93,7 +93,7 @@ def run_benchmark() -> None:
     input("\n📊 Press Enter to return to viewing logs...")
 
 # -------------------------------
-# 📁 Carregamento de mesh.yaml
+# 📁 Loading mesh.yaml
 # -------------------------------
 
 def load_mesh_yaml(path: str = MESH_PATH) -> List[Dict[str, Any]]:
@@ -117,7 +117,7 @@ def get_real_peers() -> List[Dict[str, Any]]:
     return peers
 
 # -------------------------------
-# 🎛️ Interface Principal
+# 🎛️ Main Interface
 # -------------------------------
 
 if __name__ == "__main__":

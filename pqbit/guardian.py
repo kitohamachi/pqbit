@@ -14,7 +14,7 @@ from .kyber import kyber_encapsulate
 logger = logging.getLogger("pqbit.guardian")
 
 # -------------------------------
-# 📊 Entropia de tráfego
+# 📊 Traffic Entropy
 # -------------------------------
 
 def calculate_entropy(data: bytes) -> float:
@@ -25,7 +25,7 @@ def calculate_entropy(data: bytes) -> float:
     return -sum((count / total) * log2(count / total) for count in counter.values())
 
 # -------------------------------
-# ⏱️ Medição de latência
+# ⏱️ Latency Measurement
 # -------------------------------
 
 def measure_latency(ip: str, port: int = 51820) -> float:
@@ -38,7 +38,7 @@ def measure_latency(ip: str, port: int = 51820) -> float:
         return float('inf')
 
 # -------------------------------
-# 🧠 Seleção de melhor peer
+# 🧠 Best Peer Selection
 # -------------------------------
 
 def select_best_peer(peers: List[Dict[str, Any]]) -> List[Tuple[str, float]]:
@@ -46,12 +46,12 @@ def select_best_peer(peers: List[Dict[str, Any]]) -> List[Tuple[str, float]]:
     for peer in peers:
         latency = measure_latency(peer["endpoint"].split(":")[0])
         entropy = calculate_entropy(peer.get("recent_data", b""))
-        score = latency + (1 / (entropy + 0.01))  # menor latência + maior entropia
+        score = latency + (1 / (entropy + 0.01))  # lower latency + higher entropy
         scores.append((peer["name"], score))
     return sorted(scores, key=lambda x: x[1])
 
 # -------------------------------
-# 🛰️ Broadcast criptografado com Kyber1024
+# 🛰️ Encrypted Broadcast with Kyber1024
 # -------------------------------
 
 def send_encrypted_broadcast(message: str, peer_pk: bytes, port: int = 9999) -> None:
@@ -62,7 +62,7 @@ def send_encrypted_broadcast(message: str, peer_pk: bytes, port: int = 9999) -> 
     logger.info(f"Encrypted broadcast sent to port {port}.")
 
 # -------------------------------
-# 🔐 Assinatura e verificação com Falcon1024
+# 🔐 Signature and Verification with Falcon1024
 # -------------------------------
 
 def sign_node_identity(node_name: str, private_key: bytes) -> bytes:
@@ -72,7 +72,7 @@ def verify_peer_identity(peer_name: str, signature: bytes, public_key: bytes) ->
     return falcon_verify(peer_name.encode(), signature, public_key)
 
 # -------------------------------
-# 🛡️ Auditoria de tráfego com Wireshark
+# 🛡️ Traffic Audit with Wireshark
 # -------------------------------
 
 def run_guardian_audit(interface: str = "tun0", duration: int = 30):
