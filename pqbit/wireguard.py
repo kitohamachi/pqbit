@@ -6,7 +6,7 @@ import logging
 
 logger = logging.getLogger("pqbit.wireguard")
 
-def setup_wireguard_tunnel(config_path="/etc/wireguard/wg0.conf"):
+def setup_wireguard_tunnel(config_path: str = "/etc/wireguard/wg0.conf") -> bool:
     """
     Activates a WireGuard tunnel using a configuration file.
 
@@ -30,7 +30,7 @@ def setup_wireguard_tunnel(config_path="/etc/wireguard/wg0.conf"):
         logger.error(f"Error activating WireGuard tunnel: {e}")
         return False
 
-def teardown_wireguard_tunnel(config_path="/etc/wireguard/wg0.conf"):
+def teardown_wireguard_tunnel(config_path: str = "/etc/wireguard/wg0.conf") -> bool:
     """
     Disables the WireGuard tunnel using the same configuration file.
 

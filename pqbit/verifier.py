@@ -29,7 +29,7 @@ def verify_report(message: str, hex_signature: str, hex_public_key: str) -> bool
         logger.error(f"Verification error: {e}")
         return False
 
-def export_signed_report_json(message: str, signature: bytes, public_key: bytes, filename: str = "bit512_report.json"):
+def export_signed_report_json(message: str, signature: bytes, public_key: bytes, filename: str = "bit512_report.json") -> None:
     """
     Exports the signed audit report to a JSON file.
 

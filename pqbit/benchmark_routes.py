@@ -2,17 +2,18 @@
 
 import time
 import logging
+from typing import Dict, Any
 from pqbit.benchmark import benchmark_tunnel
 from pqbit.wireguard import setup_wireguard_tunnel
 from pqbit.obfs4 import start_obfs4_proxy
 
 logger = logging.getLogger("pqbit.benchmark")
 
-def benchmark_direct():
+def benchmark_direct() -> Dict[str, Any]:
     logger.info("🔓 Starting benchmark via direct connection")
     return benchmark_tunnel(verbose=True)
 
-def benchmark_wireguard():
+def benchmark_wireguard() -> Dict[str, Any]:
     logger.info("🛡️ Starting benchmark via WireGuard")
     if setup_wireguard_tunnel():
         result = benchmark_tunnel(verbose=True)
@@ -21,7 +22,7 @@ def benchmark_wireguard():
     logger.error("WireGuard failed to start")
     return {"latency": None, "camouflage": False, "status": "wireguard_failed"}
 
-def benchmark_obfs4():
+def benchmark_obfs4() -> Dict[str, Any]:
     logger.info("🕵️‍♂️ Starting benchmark via Obfs4")
     proc = start_obfs4_proxy(port=1050)
     if proc:
@@ -32,7 +33,7 @@ def benchmark_obfs4():
     logger.error("Obfs4 failed to start")
     return {"latency": None, "camouflage": False, "status": "obfs4_failed"}
 
-def benchmark_combined():
+def benchmark_combined() -> Dict[str, Any]:
     logger.info("🧱 Starting benchmark via WireGuard + Obfs4")
     wg_ok = setup_wireguard_tunnel()
     proc = start_obfs4_proxy(port=1050)
@@ -44,7 +45,7 @@ def benchmark_combined():
     logger.error("Failed to start combined tunnel")
     return {"latency": None, "camouflage": False, "status": "combined_failed"}
 
-def run_all_benchmarks():
+def run_all_benchmarks() -> Dict[str, Any]:
     results = {
         "direct": benchmark_direct(),
         "wireguard": benchmark_wireguard(),

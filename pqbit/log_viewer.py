@@ -4,8 +4,9 @@ import os
 import time
 import platform
 import logging
-import yaml
+import yaml  # type: ignore
 from pqbit import wireshark, benchmark, guardian
+from typing import List, Dict, Any
 
 LOG_PATH = "logs/benchmark.log"
 MESH_PATH = os.path.join(os.path.dirname(__file__), "mesh.yaml")
@@ -25,7 +26,7 @@ logger = logging.getLogger("pqbit.log_viewer")
 # 📡 Painel Mesh Interativo
 # -------------------------------
 
-def show_dashboard(peers):
+def show_dashboard(peers: List[Dict[str, Any]]) -> None:
     print("=== Bit512 Mesh Dashboard ===")
     ranked = guardian.select_best_peer(peers)
     for name, score in ranked:
@@ -42,7 +43,7 @@ def show_dashboard(peers):
 # 📜 Visualização de Logs
 # -------------------------------
 
-def tail_log(lines=20):
+def tail_log(lines: int = 20) -> None:
     if not os.path.exists(LOG_PATH):
         print("No logs found.")
         return
@@ -64,14 +65,14 @@ def tail_log(lines=20):
 # 🧹 Limpeza de Tela
 # -------------------------------
 
-def clear_screen():
+def clear_screen() -> None:
     os.system("cls" if platform.system() == "Windows" else "clear")
 
 # -------------------------------
 # 🛡️ Auditoria Guardian
 # -------------------------------
 
-def run_guardian():
+def run_guardian() -> None:
     print("\n🧠 Running a full audit with Bit512 Guardian...\n")
     guardian.run_guardian_audit(interface="tun0", duration=30)
     input("\n🛡️ Press Enter to return to viewing logs...")
@@ -80,7 +81,7 @@ def run_guardian():
 # 🚀 Benchmark de Túnel
 # -------------------------------
 
-def run_benchmark():
+def run_benchmark() -> None:
     print("\n🚀 Running tunnel benchmark...\n")
     result = benchmark.benchmark_tunnel(verbose=True)
     if result["status"] == "ok":
@@ -95,7 +96,7 @@ def run_benchmark():
 # 📁 Carregamento de mesh.yaml
 # -------------------------------
 
-def load_mesh_yaml(path=MESH_PATH):
+def load_mesh_yaml(path: str = MESH_PATH) -> List[Dict[str, Any]]:
     if not os.path.exists(path):
         logger.error(f"Mesh config file '{path}' not found.")
         return []
@@ -107,7 +108,7 @@ def load_mesh_yaml(path=MESH_PATH):
         logger.error(f"Failed to load mesh.yaml: {e}")
         return []
 
-def get_real_peers():
+def get_real_peers() -> List[Dict[str, Any]]:
     peers = load_mesh_yaml()
     for peer in peers:
         ip = peer["endpoint"].split(":")[0]

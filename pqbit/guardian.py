@@ -5,6 +5,7 @@ import time
 import socket
 from collections import Counter
 from math import log2
+from typing import List, Tuple, Any, Dict
 
 from . import wireshark
 from .falcon import falcon_keypair, falcon_sign, falcon_verify
@@ -40,8 +41,8 @@ def measure_latency(ip: str, port: int = 51820) -> float:
 # 🧠 Seleção de melhor peer
 # -------------------------------
 
-def select_best_peer(peers: list) -> list:
-    scores = []
+def select_best_peer(peers: List[Dict[str, Any]]) -> List[Tuple[str, float]]:
+    scores: List[Tuple[str, float]] = []
     for peer in peers:
         latency = measure_latency(peer["endpoint"].split(":")[0])
         entropy = calculate_entropy(peer.get("recent_data", b""))
@@ -53,7 +54,7 @@ def select_best_peer(peers: list) -> list:
 # 🛰️ Broadcast criptografado com Kyber1024
 # -------------------------------
 
-def send_encrypted_broadcast(message: str, peer_pk: bytes, port: int = 9999):
+def send_encrypted_broadcast(message: str, peer_pk: bytes, port: int = 9999) -> None:
     ct, _ = kyber_encapsulate(peer_pk)
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)

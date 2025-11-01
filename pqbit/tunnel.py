@@ -7,7 +7,7 @@ from pqbit.pysocks import create_socks_proxy
 
 logger = logging.getLogger("pqbit.tunnel")
 
-def start_secure_tunnel():
+def start_secure_tunnel() -> bool:
     """
     Starts a post-quantum secure tunnel combining WireGuard, Obfs4, and PySocks.
 

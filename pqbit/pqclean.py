@@ -3,12 +3,13 @@
 import os
 import subprocess
 import logging
+from typing import List
 
 logger = logging.getLogger("pqbit.pqclean")
 
 PQ_CLEAN_PATH = os.path.expanduser("~/PQClean")  # Adjust according to your local structure
 
-def list_supported_algorithms():
+def list_supported_algorithms() -> List[str]:
     """
     Lists the algorithms available in the PQClean repository.
 
@@ -28,7 +29,7 @@ def list_supported_algorithms():
     logger.info(f"{len(algorithms)} algorithms found in PQClean.")
     return algorithms
 
-def compile_pqclean(algorithm, category="kem"):
+def compile_pqclean(algorithm: str, category: str = "kem") -> bool:
     """
     Compiles a specific PQClean algorithm using make.
 

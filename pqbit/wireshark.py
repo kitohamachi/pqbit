@@ -2,13 +2,14 @@
 
 import logging
 import subprocess
-from scapy.all import rdpcap, Raw
+from scapy.all import rdpcap, Raw  # type: ignore
 from math import log2
 import os
+from typing import List
 
 logger = logging.getLogger("pqbit.wireshark")
 
-def capture_traffic(interface="tun0", duration=30, output="bit512_capture.pcap"):
+def capture_traffic(interface: str = "tun0", duration: int = 30, output: str = "bit512_capture.pcap") -> None:
     """
     Captures traffic from the specified interface using tshark.
     """
@@ -24,7 +25,7 @@ def capture_traffic(interface="tun0", duration=30, output="bit512_capture.pcap")
     except subprocess.CalledProcessError as e:
         logger.error(f"Error capturing traffic with tshark: {e}")
 
-def entropy(data):
+def entropy(data: bytes) -> float:
     """
     Calculates the entropy of a block of data.
 
@@ -40,7 +41,7 @@ def entropy(data):
     total = len(data)
     return -sum((f / total) * log2(f / total) for f in freq.values())
 
-def analyze_entropy(pcap_file="bit512_capture.pcap"):
+def analyze_entropy(pcap_file: str = "bit512_capture.pcap") -> None:
     """
     Analyzes average entropy of captured packets.
     """
@@ -68,7 +69,7 @@ def analyze_entropy(pcap_file="bit512_capture.pcap"):
     else:
         logger.warning("No packets with raw payload were found.")
 
-def audit(interface="tun0", duration=30):
+def audit(interface: str = "tun0", duration: int = 30) -> None:
     """
     Performs entropy capture and analysis in sequence.
     """

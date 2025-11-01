@@ -1,22 +1,23 @@
 # pqbit/pqbit/dilithium.py
 
 import logging
-from pqc.sign.dilithium5 import keypair as _generate_keypair, sign as _sign, verify as _verify
+from pqc.sign.dilithium5 import keypair as _generate_keypair, sign as _sign, verify as _verify  # type: ignore
+from typing import Tuple
 
 logger = logging.getLogger("pqbit.dilithium")
 
-def dilithium_keypair():
+def dilithium_keypair() -> Tuple[bytes, bytes]:
     """
     Generates a key pair for Dilithium5.
 
     Returns:
         tuple: (public_key: bytes, secret_key: bytes)
     """
-    pk, sk = _generate_keypair()
+    pk, sk = _generate_keypair()  # type: ignore
     logger.info("Dilithium5 keypair generated.")
     return pk, sk
 
-def dilithium_sign(message, sk):
+def dilithium_sign(message: bytes, sk: bytes) -> bytes:
     """
     Signs a message using the secret key.
 
@@ -35,11 +36,11 @@ def dilithium_sign(message, sk):
     if not isinstance(sk, bytes):
         raise TypeError("dilithium_sign expects sk of type bytes")
 
-    signature = _sign(message, sk)
+    signature = _sign(message, sk)  # type: ignore
     logger.info("Message signed with Dilithium5.")
     return signature
 
-def dilithium_verify(message, signature, pk):
+def dilithium_verify(message: bytes, signature: bytes, pk: bytes) -> bool:
     """
     Verifies the signature of a message using the public key.
 
@@ -62,7 +63,7 @@ def dilithium_verify(message, signature, pk):
         raise TypeError("dilithium_verify expects pk of type bytes")
 
     try:
-        _verify(signature, message, pk)
+        _verify(signature, message, pk)  # type: ignore
         logger.info("Signature verification result: valid")
         return True
     except Exception:

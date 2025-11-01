@@ -4,10 +4,11 @@ import subprocess
 import os
 import shutil
 import logging
+from typing import Optional
 
 logger = logging.getLogger("pqbit.obfs4")
 
-def start_obfs4_proxy(port=1050, cert=None, iat_mode="0"):
+def start_obfs4_proxy(port: int = 1050, cert: Optional[str] = None, iat_mode: str = "0") -> Optional[subprocess.Popen]:
     """
     Starts a local Obfs4 proxy using the obfs4proxy binary.
 

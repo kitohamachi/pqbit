@@ -6,7 +6,7 @@ import logging
 
 logger = logging.getLogger("pqbit.report")
 
-def export_signed_report_json(message: str, signature: bytes, public_key: bytes, filename: str = "bit512_report.json"):
+def export_signed_report_json(message: str, signature: bytes, public_key: bytes, filename: str = "bit512_report.json") -> None:
     """
     Exports the signed audit report to a JSON file.
 
@@ -37,7 +37,7 @@ def export_signed_report_json(message: str, signature: bytes, public_key: bytes,
     except Exception as e:
         logger.error(f"Failed to export JSON report: {e}")
 
-def export_signed_report(message: str, signature: bytes, public_key: bytes, filename: str = "bit512_report.txt"):
+def export_signed_report(message: str, signature: bytes, public_key: bytes, filename: str = "bit512_report.txt") -> None:
     """
     Exports the signed audit report to a plain text file.
 

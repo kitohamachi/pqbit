@@ -1,22 +1,23 @@
 # pqbit/pqbit/falcon.py
 
 import logging
-from pqc.sign.falcon_1024 import keypair as _generate_keypair, sign as _sign, verify as _verify
+from pqc.sign.falcon_1024 import keypair as _generate_keypair, sign as _sign, verify as _verify  # type: ignore
+from typing import Tuple
 
 logger = logging.getLogger("pqbit.falcon")
 
-def falcon_keypair():
+def falcon_keypair() -> Tuple[bytes, bytes]:
     """
     Generates a key pair for Falcon-1024.
 
     Returns:
         tuple: (public_key: bytes, secret_key: bytes)
     """
-    pk, sk = _generate_keypair()
+    pk, sk = _generate_keypair()  # type: ignore
     logger.info("Falcon-1024 keypair generated.")
     return pk, sk
 
-def falcon_sign(message, sk):
+def falcon_sign(message: bytes, sk: bytes) -> bytes:
     """
     Signs a message using the secret key.
 
@@ -35,11 +36,11 @@ def falcon_sign(message, sk):
     if not isinstance(sk, bytes):
         raise TypeError("falcon_sign expects sk of type bytes")
 
-    signature = _sign(message, sk)
+    signature = _sign(message, sk)  # type: ignore
     logger.info("Message signed with Falcon-1024.")
     return signature
 
-def falcon_verify(message, signature, pk):
+def falcon_verify(message: bytes, signature: bytes, pk: bytes) -> bool:
     """
     Verifies the signature of a message using the public key.
 
@@ -62,7 +63,7 @@ def falcon_verify(message, signature, pk):
         raise TypeError("falcon_verify expects pk of type bytes")
 
     try:
-        _verify(signature, message, pk)
+        _verify(signature, message, pk)  # type: ignore
         logger.info("Signature verification result: valid")
         return True
     except Exception:

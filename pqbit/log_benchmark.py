@@ -4,6 +4,7 @@ import os
 import json
 import logging
 from datetime import datetime
+from typing import Dict, Any
 from pqbit.benchmark_routes import run_all_benchmarks
 
 # Logger configuration
@@ -25,7 +26,7 @@ file_handler = logging.FileHandler(log_file)
 file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 
-def save_benchmark_json(results, output_dir="logs"):
+def save_benchmark_json(results: Dict[str, Any], output_dir: str = "logs") -> None:
     """
     Save the benchmark results to a JSON file with a timestamp.
 
@@ -52,7 +53,7 @@ def save_benchmark_json(results, output_dir="logs"):
     except Exception as e:
         logger.error(f"Error saving benchmark: {e}")
 
-def run_and_log_benchmarks():
+def run_and_log_benchmarks() -> None:
     """
     Runs all benchmarks and saves the results in JSON.
     """
