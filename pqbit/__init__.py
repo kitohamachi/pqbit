@@ -1,4 +1,4 @@
-# pqbit/pqbit/__init__.py
+# pqbit/__init__.py
 
 import logging
 

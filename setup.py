@@ -1,5 +1,3 @@
-# pqbit/setup.py
-
 import os
 from setuptools import setup, find_packages
 
@@ -19,7 +17,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/kitohamachi/pqbit",
-    packages=find_packages(include=["pqbit", "pqbit.*"])
+    packages=find_packages(include=["pqbit", "pqbit.*"]),
     include_package_data=True,
     install_requires=[
         "pypqc>=0.0.6.2",
@@ -40,4 +38,3 @@ setup(
     python_requires=">=3.8",
     keywords="wireguard, pqclean, post-quantum, vpn, mesh, cryptography, scapy, pyshark"
 )
-

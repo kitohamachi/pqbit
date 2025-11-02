@@ -1,32 +1,19 @@
-[build-system]
-requires = ["setuptools>=68.0", "wheel"]
-build-backend = "setuptools.build_meta"
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501"]
 
-[project]
-name = "pqbit"
-version = "1.0.0"
-description = "Post-quantum mesh VPN library with WireGuard, PQClean, Pyshark, Scapy, and Logging4"
-authors = [
-  { name = "Kito Hamachi", email = "kitohamachi@hotmail.com" }
-]
-license = { text = "MIT" }
-readme = "README.md"
-requires-python = ">=3.8"
-dependencies = [
-  "pypqc>=0.0.6.2",
-  "pyshark>=0.6",
-  "wg-meshconf>=2.5.1",
-  "wireguard>=1.0.2",
-  "wireguard4netns>=0.1.6",
-  "scapy>=2.5.0",
-  "cffi>=2.0.0",
-  "pycparser>=2.23",
-  "logging4>=0.0.2"
-]
+[tool.mypy]
+python_version = "3.12"
+explicit_package_bases = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+warn_unused_ignores = true
+warn_return_any = true
+warn_unused_configs = true
 
-[project.urls]
-Homepage = "https://github.com/kitohamachi/pqbit"
-Repository = "https://github.com/kitohamachi/pqbit"
-Documentation = "https://github.com/kitohamachi/pqbit#readme"
-PyPI = "https://pypi.org/project/pqbit"
-
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-ra -q"
+testpaths = ["tests"]
